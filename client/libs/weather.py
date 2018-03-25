@@ -17,4 +17,6 @@ def upload(weather_xls):
         response = requests.post(API_ENDPOINT, data=record)
 
         if response.status_code == 201:
+            print("added: ", record)
             register_reader(record['row_number'])
+

@@ -38,7 +38,7 @@ Q_CLUSTER = {
     'redis': {
         'host': '127.0.0.1',
         'port': 6379,
-        'db': 0,
+        'db': 3,
         'password': None,
         'socket_timeout': None,
         'charset': 'utf-8',

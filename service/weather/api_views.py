@@ -4,11 +4,9 @@ from rest_framework import generics
 
 from django_q.tasks import async, result
 
-from weather.models import WeatherModel
-from weather.serializers import WeatherSerializer
-from weather.tasks import task_calculate_stats
+from weather.models import WeatherModel, WeatherStatsModel
+from weather.serializers import WeatherSerializer, WeatherStatsSerializer
 
-task_calculate_stats()
 
 class UploadWeatherData(generics.CreateAPIView):
     model = WeatherModel
@@ -36,3 +34,12 @@ class ListWeatherData(generics.ListAPIView):
     model = WeatherModel
     serializer_class = WeatherSerializer
     queryset = WeatherModel.objects.all()
+
+
+class RetrieveWeatherStats(generics.RetrieveAPIView):
+    model = WeatherStatsModel
+    serializer_class = WeatherStatsSerializer
+    queryset = WeatherStatsModel.objects.last()
+
+    def get_object(self):
+        return self.queryset

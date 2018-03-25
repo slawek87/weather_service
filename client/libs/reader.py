@@ -1,6 +1,8 @@
 import pandas as pd
 
-from client.libs.registry import default_reader_registry, register_reader
+from client.libs.registry import default_reader_registry
+
+API_ENDPOINT = "http://0.0.0.0:8000/api/v1/weather/upload"
 
 
 class WeatherReader(object):
@@ -12,14 +14,14 @@ class WeatherReader(object):
         'weather_datetime': None,
         'latitude': None,
         'longitude': None,
-        'high_under_the_ground': None,
+        'high_under_ground': None,
         'temperature': None,
         'wind_speed': None,
         'wind_vector_direction': None,
         'row_number': None
     }
 
-    data = []
+    data = None
 
     DATE_STRING = "%Y-%m-%d"
     TIME_STRING = "%H:%M:%S"
@@ -32,6 +34,8 @@ class WeatherReader(object):
         skiprows = self.skiprows()
         sheet = pd.read_excel(self.weather_xls, sheet_name=self.SHEET_NAME,
                               skiprows=skiprows, names=self.COLUMNS, header=0)
+
+        self.data = []
 
         for index, row in sheet.iterrows():
             row['row_number'] = index + skiprows

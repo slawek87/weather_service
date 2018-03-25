@@ -64,6 +64,9 @@ def calculate_stats():
         'SE': 'south_east_direction'
     }
 
+    if not WeatherModel.objects.filter(id__gt=last_id).exists():
+        return None
+
     for record in WeatherModel.objects.filter(id__gt=last_id):
         new_stats.last_id = record.id
         new_stats.record_numbers += 1
