@@ -12,4 +12,4 @@ class WeatherSerializer(serializers.ModelSerializer):
 class WeatherStatsSerializer(serializers.ModelSerializer):
     class Meta:
         model = WeatherStatsModel
-        fields = ('avg_temperature', 'avg_wind_speed', 'most_windy_direction',)
+        fields = ('avg_temperature', 'avg_wind_speed', 'most_windy_direction', 'created_at',)
