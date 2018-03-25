@@ -6,7 +6,9 @@ from django_q.tasks import async, result
 
 from weather.models import WeatherModel
 from weather.serializers import WeatherSerializer
+from weather.tasks import task_calculate_stats
 
+task_calculate_stats()
 
 class UploadWeatherData(generics.CreateAPIView):
     model = WeatherModel
@@ -26,6 +28,7 @@ class UploadWeatherData(generics.CreateAPIView):
 
 def async_create_weather_data(data):
     serializer = WeatherSerializer(data=data)
+    serializer.is_valid()
     serializer.save()
 
 

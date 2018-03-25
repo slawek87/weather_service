@@ -3,10 +3,6 @@ import pandas as pd
 from client.libs.registry import default_reader_registry, register_reader
 
 
-MOCK_DATA = {"weather_datetime": "2011-12-01T10:00:00Z", "latitude": 55.99002, "longitude": -1.00001,
-             "high_under_ground": 120.0, "wind_speed": 124.5, "wind_vector_direction": "NE", "temperature": 20.0}
-
-
 class WeatherReader(object):
     SHEET_NAME = 0
     COLUMNS = ['date', 'time', 'geoposition_coordinates', 'high_under_ground', 'temperature',
@@ -51,7 +47,7 @@ class WeatherReader(object):
         parse_data['high_under_ground'] = row['high_under_ground']
         parse_data['temperature'] = row['temperature']
         parse_data['wind_speed'] = row['wind_speed']
-        parse_data['wind_vector_direction'] = row['wind_vector_direction']
+        parse_data['wind_vector_direction'] = row['wind_vector_direction'].upper()
         parse_data['row_number'] = row['row_number']
 
         self.data.append(parse_data)
