@@ -12,7 +12,7 @@ DATABASES = {
         'NAME': 'weather_service',
         'USER': 'root',
         'PORT': '3306',
-        'PASSWORD': 'k1k2k3k4',
+        'PASSWORD': '...',
         'HOST': '127.0.0.1',
         'OPTIONS': {
             'use_unicode': True,
